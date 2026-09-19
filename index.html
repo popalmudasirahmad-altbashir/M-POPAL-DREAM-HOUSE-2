@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>M POPAL • DREAM HOUSE</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#02030a;
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:-50%;
+    z-index:-2;
+    background:
+      radial-gradient(circle at 15% 20%,#00eaff55 0,transparent 20%),
+      radial-gradient(circle at 80% 15%,#ff00d455 0,transparent 22%),
+      radial-gradient(circle at 50% 80%,#8a2cff55 0,transparent 25%),
+      radial-gradient(circle at 90% 75%,#ff7a0055 0,transparent 20%);
+    animation:bgMove 15s linear infinite;
+}
+
+@keyframes bgMove{
+    0%{transform:rotate(0deg) scale(1)}
+    50%{transform:rotate(8deg) scale(1.08)}
+    100%{transform:rotate(0deg) scale(1)}
+}
+
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar{
+    height:76px;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 25px;
+
+    background:rgba(2,5,18,.78);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid #00eaff88;
+
+    box-shadow:
+        0 0 20px #00eaff22,
+        0 0 60px #8a2cff11;
+}
+
+/* LOGO */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logoIcon{
+    width:47px;
+    height:47px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:27px;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        #00eaff,
+        #7b2cff,
+        #ff2bd6
+    );
+
+    box-shadow:
+        0 0 15px #00eaff,
+        0 0 35px #ff2bd666;
+}
+
+.logoText h1{
+    font-size:20px;
+    letter-spacing:2px;
+}
+
+.logoText span{
+    font-size:10px;
+    color:#9fefff;
+    letter-spacing:3px;
+}
+
+/* TOP NAV */
+
+.topNav{
+    display:flex;
+    gap:35px;
+}
+
+.topNav a{
+    color:#dffaff;
+    text-decoration:none;
+    font-size:13px;
+    letter-spacing:2px;
+
+    transition:.3s;
+}
+
+.topNav a:hover{
+    color:#00eaff;
+    text-shadow:
+        0 0 10px #00eaff,
+        0 0 20px #00eaff;
+}
+
+/* TOP ICONS */
+
+.topIcons{
+    display:flex;
+    gap:10px;
+}
+
+.topIcon{
+    width:40px;
+    height:40px;
+
+    border-radius:13px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid #00eaff88;
+
+    background:#061326aa;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.topIcon:hover{
+    transform:translateY(-3px) scale(1.06);
+
+    background:#00eaff22;
+
+    box-shadow:
+        0 0 15px #00eaff,
+        0 0 35px #8a2cff88;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+    padding-top:76px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:760px;
+
+    padding:60px 5% 40px;
+
+    display:grid;
+    grid-template-columns:42% 58%;
+    align-items:center;
+
+    position:relative;
+}
+
+.heroText{
+    z-index:5;
+}
+
+.smallTitle{
+    color:#00eaff;
+    letter-spacing:5px;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.hero h2{
+    font-size:clamp(45px,6vw,90px);
+    line-height:.95;
+
+    max-width:650px;
+
+    letter-spacing:-4px;
+
+    text-shadow:
+        0 0 20px #00eaff33;
+}
+
+.gradientText{
+    background:
+      linear-gradient(
+        90deg,
+        #00eaff,
+        #8a2cff,
+        #ff27d9,
+        #ffb000,
+        #00eaff
+      );
+
+    background-size:300%;
+
+    -webkit-background-clip:text;
+    color:transparent;
+
+    animation:gradientMove 5s linear infinite;
+}
+
+@keyframes gradientMove{
+    0%{background-position:0%}
+    100%{background-position:300%}
+}
+
+.heroText p{
+    max-width:520px;
+    margin-top:25px;
+
+    color:#b8c9e8;
+
+    line-height:1.8;
+
+    font-size:15px;
+}
+
+.heroButtons{
+    display:flex;
+    gap:15px;
+    margin-top:35px;
+    flex-wrap:wrap;
+}
+
+.mainBtn{
+    border:0;
+    padding:16px 27px;
+
+    border-radius:17px;
+
+    color:white;
+
+    font-weight:bold;
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    background:
+      linear-gradient(
+        100deg,
+        #00eaff,
+        #743cff,
+        #ff25d4,
+        #ff9900
+      );
+
+    background-size:250%;
+
+    box-shadow:
+      0 0 15px #00eaff88,
+      0 0 35px #ff25d444;
+
+    transition:.35s;
+}
+
+.mainBtn:hover{
+    transform:translateY(-5px) scale(1.04);
+
+    background-position:100%;
+
+    box-shadow:
+      0 0 20px #00eaff,
+      0 0 50px #ff25d4aa;
+}
+
+.secondBtn{
+    padding:15px 26px;
+
+    border-radius:17px;
+
+    color:#fff;
+
+    background:#ffffff08;
+
+    border:1px solid #ffffff55;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.secondBtn:hover{
+    border-color:#00eaff;
+    box-shadow:0 0 25px #00eaff44;
+}
+
+/* =========================
+   HOUSE VISUAL
+========================= */
+
+.houseArea{
+    position:relative;
+
+    min-height:560px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.houseGlow{
+    position:absolute;
+
+    width:480px;
+    height:300px;
+
+    border-radius:50%;
+
+    background:
+      radial-gradient(
+        ellipse,
+        #00eaff55,
+        #8a2cff22,
+        transparent 70%
+      );
+
+    filter:blur(20px);
+}
+
+/* HOUSE */
+
+.house{
+    position:relative;
+
+    width:560px;
+    height:390px;
+
+    transform:perspective(900px) rotateY(-8deg);
+
+    filter:
+      drop-shadow(0 0 18px #00eaff55)
+      drop-shadow(0 0 45px #8a2cff33);
+}
+
+/* ROOF */
+
+.roof{
+    position:absolute;
+
+    left:45px;
+    top:30px;
+
+    width:470px;
+    height:110px;
+
+    background:#ffffff;
+
+    clip-path:polygon(
+        8% 100%,
+        50% 0,
+        92% 100%
+    );
+
+    border-bottom:10px solid #d9e9ff;
+
+    box-shadow:
+        0 0 15px white,
+        0 0 30px #00eaff55;
+}
+
+.roofLine{
+    position:absolute;
+
+    left:270px;
+    top:0;
+
+    width:5px;
+    height:110px;
+
+    background:#00eaff;
+
+    box-shadow:
+      0 0 12px #00eaff,
+      0 0 30px #00eaff;
+}
+
+/* SECOND FLOOR */
+
+.floor2{
+    position:absolute;
+
+    left:105px;
+    top:115px;
+
+    width:350px;
+    height:115px;
+
+    background:
+      linear-gradient(
+        90deg,
+        #ffffff,
+        #e9f5ff,
+        #ffffff
+      );
+
+    border:4px solid white;
+
+    box-shadow:
+      inset 0 0 25px #9bdfff55,
+      0 0 15px #ffffff88;
+}
+
+/* FIRST FLOOR */
+
+.floor1{
+    position:absolute;
+
+    left:65px;
+    top:220px;
+
+    width:430px;
+    height:135px;
+
+    background:
+      linear-gradient(
+        90deg,
+        #ffffff,
+        #edf8ff,
+        #ffffff
+      );
+
+    border:4px solid white;
+
+    box-shadow:
+      inset 0 0 30px #8adfff55,
+      0 0 20px #ffffff88;
+}
+
+/* WINDOWS */
+
+.window{
+    position:absolute;
+
+    width:72px;
+    height:68px;
+
+    background:
+      linear-gradient(
+        135deg,
+        #051a32,
+        #00cfff66,
+        #051a32
+      );
+
+    border:4px solid #ffffff;
+
+    box-shadow:
+      0 0 12px #00eaff,
+      inset 0 0 15px #00eaff55;
+}
+
+.w1{left:140px;top:137px}
+.w2{left:240px;top:137px}
+.w3{left:340px;top:137px}
+
+.w4{left:105px;top:247px}
+.w5{left:205px;top:247px}
+.w6{left:365px;top:247px}
+
+/* DOOR */
+
+.door{
+    position:absolute;
+
+    left:275px;
+    top:260px;
+
+    width:65px;
+    height:95px;
+
+    background:
+      linear-gradient(
+        90deg,
+        #09101e,
+        #12314b,
+        #07101d
+      );
+
+    border:4px solid white;
+
+    box-shadow:
+      0 0 15px #00eaff88;
+}
+
+.handle{
+    position:absolute;
+
+    right:8px;
+    top:48%;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#ffd000;
+
+    box-shadow:0 0 10px #ffd000;
+}
+
+/* GARDEN */
+
+.ground{
+    position:absolute;
+
+    bottom:10px;
+    left:30px;
+
+    width:500px;
+    height:45px;
+
+    border-radius:50%;
+
+    background:
+      linear-gradient(
+        90deg,
+        #00eaff22,
+        #8a2cff44,
+        #ff2bd633,
+        #00eaff22
+      );
+
+    filter:blur(1px);
+
+    box-shadow:
+      0 0 30px #00eaff44;
+}
+
+/* =========================
+   INFO CARDS
+========================= */
+
+.infoSection{
+    padding:40px 5% 100px;
+}
+
+.sectionTitle{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.sectionTitle small{
+    color:#00eaff;
+    letter-spacing:4px;
+}
+
+.sectionTitle h3{
+    font-size:42px;
+    margin-top:10px;
+}
+
+.cards{
+    display:grid;
+
+    grid-template-columns:
+      repeat(4,1fr);
+
+    gap:18px;
+}
+
+.card{
+    padding:28px;
+
+    min-height:190px;
+
+    border-radius:25px;
+
+    background:
+      linear-gradient(
+        145deg,
+        #ffffff0b,
+        #ffffff03
+      );
+
+    border:1px solid #ffffff1c;
+
+    backdrop-filter:blur(15px);
+
+    transition:.4s;
+
+    position:relative;
+    overflow:hidden;
+}
+
+.card::after{
+    content:"";
+
+    position:absolute;
+
+    width:130px;
+    height:130px;
+
+    right:-60px;
+    bottom:-60px;
+
+    background:#00eaff44;
+
+    filter:blur(30px);
+
+    border-radius:50%;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+
+    border-color:#00eaff88;
+
+    box-shadow:
+      0 0 25px #00eaff22,
+      0 0 60px #8a2cff11;
+}
+
+.cardIcon{
+    font-size:35px;
+    margin-bottom:18px;
+}
+
+.card h4{
+    font-size:20px;
+}
+
+.card p{
+    color:#9baaca;
+    font-size:13px;
+    line-height:1.7;
+    margin-top:10px;
+}
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery{
+    padding:70px 5%;
+}
+
+.galleryGrid{
+    display:grid;
+
+    grid-template-columns:
+      repeat(4,1fr);
+
+    gap:18px;
+}
+
+.galleryBox{
+    height:250px;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    border:1px solid #ffffff22;
+
+    background:#071020;
+
+    transition:.4s;
+}
+
+.galleryBox:hover{
+    transform:translateY(-8px) scale(1.02);
+
+    border-color:#ff2bd6;
+
+    box-shadow:
+      0 0 30px #ff2bd644;
+}
+
+/* CODE GENERATED HOUSE ART */
+
+.galleryHouse{
+    width:100%;
+    height:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+      radial-gradient(
+        circle at 50% 30%,
+        #00eaff33,
+        transparent 40%
+      ),
+      linear-gradient(
+        135deg,
+        #071a32,
+        #100624,
+        #02030a
+      );
+}
+
+.miniHouse{
+    width:150px;
+    height:105px;
+
+    position:relative;
+
+    background:#ffffff;
+
+    box-shadow:
+      0 0 20px #ffffff99,
+      0 0 45px #00eaff55;
+}
+
+.miniRoof{
+    position:absolute;
+
+    left:-15px;
+    top:-55px;
+
+    width:180px;
+    height:65px;
+
+    background:white;
+
+    clip-path:polygon(
+      5% 100%,
+      50% 0,
+      95% 100%
+    );
+}
+
+.miniDoor{
+    position:absolute;
+
+    width:25px;
+    height:50px;
+
+    left:63px;
+    bottom:0;
+
+    background:#081426;
+
+    border:2px solid white;
+}
+
+.miniWindow{
+    position:absolute;
+
+    width:30px;
+    height:30px;
+
+    background:#04cfff;
+
+    border:3px solid white;
+
+    box-shadow:0 0 12px #00eaff;
+}
+
+.mw1{
+    left:18px;
+    top:25px;
+}
+
+.mw2{
+    right:18px;
+    top:25px;
+}
+
+.galleryLabel{
+    position:absolute;
+
+    left:15px;
+    bottom:15px;
+
+    padding:8px 13px;
+
+    border-radius:12px;
+
+    background:#02030acc;
+
+    border:1px solid #00eaff77;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+}
+
+/* =========================
+   3D SECTION
+========================= */
+
+.threeDSection{
+    padding:80px 5% 120px;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.threeDBox{
+    min-height:430px;
+
+    border-radius:40px;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:
+      radial-gradient(
+        circle at 20% 50%,
+        #00eaff44,
+        transparent 25%
+      ),
+      radial-gradient(
+        circle at 80% 40%,
+        #ff2bd644,
+        transparent 25%
+      ),
+      radial-gradient(
+        circle at 50% 100%,
+        #ff9d0044,
+        transparent 30%
+      ),
+      #02030b;
+
+    border:1px solid #ffffff33;
+
+    box-shadow:
+      inset 0 0 80px #00eaff11,
+      0 0 50px #8a2cff22;
+}
+
+/* LIGHT STREAMS */
+
+.stream{
+    position:absolute;
+
+    width:80%;
+    height:8px;
+
+    border-radius:100%;
+
+    filter:blur(3px);
+
+    transform:rotate(-12deg);
+
+    opacity:.8;
+}
+
+.stream1{
+    background:#00eaff;
+    top:30%;
+    left:-10%;
+
+    box-shadow:
+      0 0 15px #00eaff,
+      0 0 40px #00eaff;
+}
+
+.stream2{
+    background:#ff2bd6;
+    top:55%;
+    right:-10%;
+
+    transform:rotate(12deg);
+
+    box-shadow:
+      0 0 15px #ff2bd6,
+      0 0 40px #ff2bd6;
+}
+
+.stream3{
+    background:#ffb000;
+    bottom:20%;
+    left:10%;
+
+    transform:rotate(5deg);
+
+    box-shadow:
+      0 0 15px #ffb000,
+      0 0 40px #ffb000;
+}
+
+/* 3D CONTENT */
+
+.threeDContent{
+    position:relative;
+    z-index:5;
+
+    text-align:center;
+}
+
+.cube{
+    font-size:65px;
+
+    margin-bottom:20px;
+
+    filter:
+      drop-shadow(0 0 10px #00eaff)
+      drop-shadow(0 0 25px #ff2bd6);
+}
+
+.threeDContent h3{
+    font-size:clamp(35px,5vw,65px);
+
+    letter-spacing:-2px;
+}
+
+.threeDContent p{
+    margin:15px auto 30px;
+
+    color:#b7c9e8;
+
+    max-width:500px;
+
+    line-height:1.7;
+}
+
+/* UNIQUE 3D BUTTON */
+
+.threeDButton{
+    position:relative;
+
+    padding:20px 45px;
+
+    border-radius:22px;
+
+    border:2px solid white;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    background:
+      linear-gradient(
+        90deg,
+        #00eaff,
+        #7b2cff,
+        #ff2bd6,
+        #ff8a00
+      );
+
+    background-size:300%;
+
+    box-shadow:
+      0 0 15px #00eaff,
+      0 0 35px #8a2cff,
+      0 0 65px #ff2bd655;
+
+    animation:buttonColors 4s linear infinite;
+
+    transition:.3s;
+}
+
+@keyframes buttonColors{
+    0%{background-position:0%}
+    50%{background-position:100%}
+    100%{background-position:0%}
+}
+
+.threeDButton:hover{
+    transform:
+      translateY(-7px)
+      scale(1.07);
+
+    box-shadow:
+      0 0 20px #00eaff,
+      0 0 50px #ff2bd6,
+      0 0 100px #ff8a00aa;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:30px;
+
+    text-align:center;
+
+    border-top:1px solid #ffffff18;
+
+    color:#70809d;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+    .topNav{
+        display:none;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+
+        text-align:center;
+    }
+
+    .heroText p{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .heroButtons{
+        justify-content:center;
+    }
+
+    .houseArea{
+        margin-top:40px;
+        transform:scale(.8);
+    }
+
+    .cards{
+        grid-template-columns:
+          repeat(2,1fr);
+    }
+
+    .galleryGrid{
+        grid-template-columns:
+          repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .topbar{
+        padding:0 12px;
+    }
+
+    .logoText{
+        display:none;
+    }
+
+    .topIcons{
+        gap:5px;
+    }
+
+    .topIcon{
+        width:35px;
+        height:35px;
+    }
+
+    .hero{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    .hero h2{
+        font-size:48px;
+    }
+
+    .houseArea{
+        transform:scale(.55);
+        margin-left:-90px;
+        margin-right:-90px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .galleryGrid{
+        grid-template-columns:1fr;
+    }
+
+    .threeDBox{
+        min-height:500px;
+        border-radius:25px;
+    }
+
+    .threeDButton{
+        padding:17px 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     TOP BAR
+========================= -->
+
+<header class="topbar">
+
+    <div class="logo">
+
+        <div class="logoIcon">⌂</div>
+
+        <div class="logoText">
+            <h1>M POPAL</h1>
+            <span>DREAM HOUSE</span>
+        </div>
+
+    </div>
+
+
+    <nav class="topNav">
+
+        <a href="#home">HOME</a>
+        <a href="#features">FEATURES</a>
+        <a href="#gallery">GALLERY</a>
+        <a href="#view3d">3D VIEW</a>
+
+    </nav>
+
+
+    <div class="topIcons">
+
+        <div class="topIcon">⌕</div>
+        <div class="topIcon">◉</div>
+        <div class="topIcon">☾</div>
+        <div class="topIcon">⚙</div>
+        <div class="topIcon">×</div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="heroText">
+
+        <div class="smallTitle">
+            M POPAL • FUTURE LIVING
+        </div>
+
+        <h2>
+            YOUR
+            <span class="gradientText">
+                DREAM
+            </span>
+            HOME
+            <br>
+            STARTS HERE.
+        </h2>
+
+        <p>
+            A futuristic home experience designed to
+            explore beauty, technology, comfort and
+            modern architecture from every angle.
+        </p>
+
+        <div class="heroButtons">
+
+            <button class="mainBtn">
+                EXPLORE HOUSE →
+            </button>
+
+            <button class="secondBtn">
+                DISCOVER MORE
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CODE GENERATED WHITE HOUSE -->
+
+    <div class="houseArea">
+
+        <div class="houseGlow"></div>
+
+        <div class="house">
+
+            <div class="roof">
+                <div class="roofLine"></div>
+            </div>
+
+            <div class="floor2">
+
+                <div class="window w1"></div>
+                <div class="window w2"></div>
+                <div class="window w3"></div>
+
+            </div>
+
+            <div class="floor1">
+
+                <div class="window w4"></div>
+                <div class="window w5"></div>
+                <div class="window w6"></div>
+
+                <div class="door">
+                    <div class="handle"></div>
+                </div>
+
+            </div>
+
+            <div class="ground"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section class="infoSection" id="features">
+
+    <div class="sectionTitle">
+
+        <small>HOUSE EXPERIENCE</small>
+
+        <h3>
+            MORE THAN A HOUSE
+        </h3>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="cardIcon">⌂</div>
+
+            <h4>Modern Design</h4>
+
+            <p>
+                A clean futuristic architecture
+                with a bright white exterior.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="cardIcon">✦</div>
+
+            <h4>Smart Living</h4>
+
+            <p>
+                Designed around technology,
+                comfort and intelligent spaces.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="cardIcon">◇</div>
+
+            <h4>Large Spaces</h4>
+
+            <p>
+                Wide rooms, large windows and
+                open areas for comfortable living.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="cardIcon">∞</div>
+
+            <h4>360° Experience</h4>
+
+            <p>
+                The future version of this website
+                will allow you to explore the house
+                from every outside angle.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     GALLERY
+========================= -->
+
+<section class="gallery" id="gallery">
+
+    <div class="sectionTitle">
+
+        <small>HOUSE COLLECTION</small>
+
+        <h3>
+            EXPLORE THE HOUSE
+        </h3>
+
+    </div>
+
+
+    <div class="galleryGrid">
+
+
+        <div class="galleryBox">
+
+            <div class="galleryHouse">
+
+                <div class="miniHouse">
+
+                    <div class="miniRoof"></div>
+
+                    <div class="miniWindow mw1"></div>
+                    <div class="miniWindow mw2"></div>
+
+                    <div class="miniDoor"></div>
+
+                </div>
+
+            </div>
+
+            <div class="galleryLabel">
+                FRONT VIEW
+            </div>
+
+        </div>
+
+
+        <div class="galleryBox">
+
+            <div class="galleryHouse">
+
+                <div class="miniHouse">
+
+                    <div class="miniRoof"></div>
+
+                    <div class="miniWindow mw1"></div>
+                    <div class="miniWindow mw2"></div>
+
+                    <div class="miniDoor"></div>
+
+                </div>
+
+            </div>
+
+            <div class="galleryLabel">
+                BACKYARD
+            </div>
+
+        </div>
+
+
+        <div class="galleryBox">
+
+            <div class="galleryHouse">
+
+                <div class="miniHouse">
+
+                    <div class="miniRoof"></div>
+
+                    <div class="miniWindow mw1"></div>
+                    <div class="miniWindow mw2"></div>
+
+                    <div class="miniDoor"></div>
+
+                </div>
+
+            </div>
+
+            <div class="galleryLabel">
+                SIDE VIEW
+            </div>
+
+        </div>
+
+
+        <div class="galleryBox">
+
+            <div class="galleryHouse">
+
+                <div class="miniHouse">
+
+                    <div class="miniRoof"></div>
+
+                    <div class="miniWindow mw1"></div>
+                    <div class="miniWindow mw2"></div>
+
+                    <div class="miniDoor"></div>
+
+                </div>
+
+            </div>
+
+            <div class="galleryLabel">
+                ROOFTOP
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     3D SECTION
+========================= -->
+
+<section class="threeDSection" id="view3d">
+
+    <div class="threeDBox">
+
+        <div class="stream stream1"></div>
+        <div class="stream stream2"></div>
+        <div class="stream stream3"></div>
+
+
+        <div class="threeDContent">
+
+            <div class="cube">
+                ◈
+            </div>
+
+            <h3>
+                3D HOUSE
+            </h3>
+
+            <p>
+                Touch. Drag. Explore.
+                In the next stage this button
+                will open the full interactive
+                exterior house experience.
+            </p>
+
+            <button class="threeDButton">
+                ◈ &nbsp; VIEW 3D HOUSE &nbsp; →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    M POPAL • DREAM HOUSE
+    <br><br>
+    FUTURE LIVING • MODERN ARCHITECTURE • 360° EXPERIENCE
+
+</footer>
+
+</body>
+</html>
