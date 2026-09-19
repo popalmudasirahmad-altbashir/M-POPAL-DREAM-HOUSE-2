@@ -1,0 +1,3807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>M POPAL — DREAM HOUSE</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+    --cyan:#00eaff;
+    --purple:#7c3cff;
+    --pink:#ff20d8;
+    --gold:#ff9d00;
+    --green:#00ff9d;
+    --white:#ffffff;
+    --bg:#02030a;
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    background:var(--bg);
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+/* =========================================================
+   MAX BACKGROUND
+========================================================= */
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:-45%;
+    z-index:-10;
+
+    background:
+        radial-gradient(
+            circle at 12% 15%,
+            #00eaff55 0,
+            transparent 20%
+        ),
+        radial-gradient(
+            circle at 88% 12%,
+            #ff20d855 0,
+            transparent 21%
+        ),
+        radial-gradient(
+            circle at 48% 65%,
+            #713cff55 0,
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            #ff9d0055 0,
+            transparent 20%
+        );
+
+    filter:blur(25px);
+
+    animation:
+        backgroundMove 15s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundMove{
+    from{
+        transform:rotate(0deg) scale(1);
+    }
+
+    to{
+        transform:rotate(8deg) scale(1.15);
+    }
+}
+
+body:after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-9;
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 0%,
+            #00eaff08 35%,
+            transparent 47%,
+            #ff20d808 70%,
+            transparent 82%
+        );
+}
+
+/* =========================================================
+   TOP NAVIGATION
+========================================================= */
+
+.topbar{
+    position:fixed;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:88px;
+
+    z-index:5000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 28px;
+
+    background:#02050ee8;
+
+    backdrop-filter:blur(22px);
+
+    border-bottom:
+        1px solid #00eaff66;
+
+    box-shadow:
+        0 0 30px #00eaff18,
+        0 0 80px #7c3cff15;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.logoIcon{
+    width:56px;
+    height:56px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:18px;
+
+    font-size:31px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink)
+        );
+
+    box-shadow:
+        0 0 18px var(--cyan),
+        0 0 40px #ff20d855;
+}
+
+.logoText h1{
+    font-size:21px;
+    letter-spacing:3px;
+}
+
+.logoText span{
+    display:block;
+
+    margin-top:3px;
+
+    color:#9fefff;
+
+    font-size:9px;
+
+    letter-spacing:5px;
+}
+
+.navLinks{
+    display:flex;
+    gap:34px;
+}
+
+.navLinks a{
+    color:#d9faff;
+
+    text-decoration:none;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+    transition:.3s;
+}
+
+.navLinks a:hover{
+    color:var(--cyan);
+
+    text-shadow:
+        0 0 10px var(--cyan),
+        0 0 25px var(--cyan);
+}
+
+.navIcons{
+    display:flex;
+    gap:10px;
+}
+
+.bigIcon{
+    width:50px;
+    height:50px;
+
+    border-radius:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#071426dd;
+
+    border:
+        1px solid #00eaff66;
+
+    color:white;
+
+    font-size:23px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.bigIcon:hover{
+    transform:
+        translateY(-4px)
+        scale(1.07);
+
+    border-color:var(--pink);
+
+    box-shadow:
+        0 0 17px var(--cyan),
+        0 0 35px var(--pink);
+}
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.overlay{
+    position:fixed;
+
+    inset:0;
+
+    z-index:5998;
+
+    background:#00000099;
+
+    backdrop-filter:blur(9px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.35s;
+}
+
+.overlay.open{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.menu{
+    position:fixed;
+
+    top:0;
+    right:-450px;
+
+    width:425px;
+    max-width:92vw;
+
+    height:100vh;
+
+    z-index:6000;
+
+    padding:105px 25px 30px;
+
+    overflow-y:auto;
+
+    background:
+        linear-gradient(
+            145deg,
+            #050a19f8,
+            #10001cf8,
+            #020d16f8
+        );
+
+    backdrop-filter:blur(28px);
+
+    border-left:
+        2px solid #00eaff88;
+
+    box-shadow:
+        -15px 0 50px #00eaff25,
+        -40px 0 120px #7c3cff25;
+
+    transition:
+        right .5s
+        cubic-bezier(.77,0,.18,1);
+}
+
+.menu.open{
+    right:0;
+}
+
+.menuHeader{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:22px;
+}
+
+.menuHeader h2{
+    font-size:30px;
+
+    letter-spacing:3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--pink),
+            var(--gold)
+        );
+
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.closeButton{
+    width:52px;
+    height:52px;
+
+    border-radius:17px;
+
+    background:#ffffff08;
+
+    color:white;
+
+    border:
+        1px solid #ff20d888;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.closeButton:hover{
+    transform:rotate(90deg);
+
+    box-shadow:
+        0 0 25px var(--pink);
+}
+
+.menuLine{
+    height:2px;
+
+    margin-bottom:22px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--cyan),
+            var(--purple),
+            var(--pink),
+            transparent
+        );
+}
+
+.menuItem{
+    width:100%;
+
+    display:flex;
+    align-items:center;
+
+    gap:16px;
+
+    padding:17px;
+
+    margin-bottom:12px;
+
+    border-radius:21px;
+
+    color:white;
+
+    background:#ffffff07;
+
+    border:
+        1px solid #ffffff18;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    transition:.3s;
+}
+
+.menuItem:hover{
+    transform:translateX(-7px);
+
+    border-color:
+        #00eaff99;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00eaff18,
+            #713cff18,
+            #ff20d818
+        );
+
+    box-shadow:
+        0 0 25px #00eaff20;
+}
+
+.menuIcon{
+    width:54px;
+    height:54px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:17px;
+
+    font-size:26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00eaff20,
+            #713cff25,
+            #ff20d620
+        );
+
+    border:
+        1px solid #00eaff66;
+}
+
+.menuText strong{
+    display:block;
+
+    font-size:16px;
+
+    letter-spacing:.5px;
+}
+
+.menuText span{
+    display:block;
+
+    margin-top:5px;
+
+    color:#8190ae;
+
+    font-size:11px;
+}
+
+/* SETTINGS */
+
+.settings{
+    margin-top:18px;
+
+    padding:19px;
+
+    border-radius:22px;
+
+    background:#00000044;
+
+    border:
+        1px solid #ffffff18;
+}
+
+.settingsTitle{
+    margin-bottom:14px;
+
+    color:var(--cyan);
+
+    font-size:12px;
+
+    letter-spacing:4px;
+}
+
+.settingGrid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:9px;
+}
+
+.setting{
+    padding:13px 7px;
+
+    border-radius:14px;
+
+    color:white;
+
+    background:#ffffff08;
+
+    border:
+        1px solid #ffffff18;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    transition:.3s;
+}
+
+.setting:hover{
+    border-color:var(--pink);
+
+    box-shadow:
+        0 0 17px #ff20d833;
+}
+
+.exitItem{
+    margin-top:20px;
+
+    border-color:#ff426888;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main{
+    padding-top:88px;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:850px;
+
+    padding:
+        75px
+        5%
+        50px;
+
+    display:grid;
+
+    grid-template-columns:
+        43% 57%;
+
+    align-items:center;
+}
+
+.heroText{
+    z-index:20;
+}
+
+.eyebrow{
+    color:var(--cyan);
+
+    font-size:12px;
+
+    letter-spacing:6px;
+
+    margin-bottom:22px;
+}
+
+.heroTitle{
+    max-width:680px;
+
+    font-size:
+        clamp(52px,6.5vw,95px);
+
+    line-height:.92;
+
+    letter-spacing:-6px;
+}
+
+.colorText{
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink),
+            var(--gold),
+            var(--cyan)
+        );
+
+    background-size:350%;
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+    animation:
+        gradientMove 5s linear infinite;
+}
+
+@keyframes gradientMove{
+    to{
+        background-position:350%;
+    }
+}
+
+.heroText p{
+    max-width:550px;
+
+    margin-top:27px;
+
+    color:#aebed9;
+
+    line-height:1.85;
+
+    font-size:15px;
+}
+
+.heroButtons{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:14px;
+
+    margin-top:35px;
+}
+
+.primaryButton,
+.secondaryButton{
+    min-height:54px;
+
+    padding:
+        0 27px;
+
+    border-radius:18px;
+
+    color:white;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    transition:.35s;
+}
+
+.primaryButton{
+    border:0;
+
+    background:
+        linear-gradient(
+            100deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink),
+            var(--gold)
+        );
+
+    background-size:280%;
+
+    box-shadow:
+        0 0 20px #00eaff88,
+        0 0 40px #ff20d844;
+}
+
+.primaryButton:hover{
+    transform:
+        translateY(-5px)
+        scale(1.04);
+
+    background-position:100%;
+
+    box-shadow:
+        0 0 28px var(--cyan),
+        0 0 60px var(--pink);
+}
+
+.secondaryButton{
+    background:#ffffff08;
+
+    border:
+        1px solid #ffffff55;
+}
+
+.secondaryButton:hover{
+    border-color:var(--cyan);
+
+    box-shadow:
+        0 0 25px #00eaff44;
+}
+
+/* =========================================================
+   MAIN WHITE HOUSE VISUAL
+========================================================= */
+
+.houseStage{
+    min-height:610px;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.houseGlow{
+    position:absolute;
+
+    width:600px;
+    height:400px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            #00eaff55,
+            #713cff35,
+            #ff20d615,
+            transparent 72%
+        );
+
+    filter:blur(20px);
+
+    animation:
+        housePulse 4s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+@keyframes housePulse{
+    from{
+        transform:scale(.93);
+    }
+
+    to{
+        transform:scale(1.08);
+    }
+}
+
+.houseHero{
+    position:relative;
+
+    width:620px;
+    height:450px;
+
+    transform:
+        perspective(1200px)
+        rotateY(-8deg);
+
+    filter:
+        drop-shadow(0 0 18px #fff)
+        drop-shadow(0 0 45px #00eaff44);
+}
+
+.houseRoof{
+    position:absolute;
+
+    left:60px;
+    top:20px;
+
+    width:510px;
+    height:135px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #e6f4ff,
+            #ffffff
+        );
+
+    clip-path:
+        polygon(
+            0 100%,
+            50% 0,
+            100% 100%
+        );
+
+    border-bottom:
+        9px solid #d5ecff;
+}
+
+.houseRoofLine{
+    position:absolute;
+
+    left:253px;
+    top:0;
+
+    width:5px;
+    height:122px;
+
+    background:var(--cyan);
+
+    box-shadow:
+        0 0 12px var(--cyan),
+        0 0 30px var(--cyan);
+}
+
+.houseUpper{
+    position:absolute;
+
+    left:105px;
+    top:105px;
+
+    width:410px;
+    height:140px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #ffffff,
+            #eaf7ff,
+            #ffffff
+        );
+
+    border:4px solid white;
+
+    box-shadow:
+        inset 0 0 35px #00eaff22;
+}
+
+.houseLower{
+    position:absolute;
+
+    left:55px;
+    bottom:55px;
+
+    width:510px;
+    height:220px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #ffffff,
+            #edf8ff,
+            #ffffff
+        );
+
+    border:4px solid white;
+
+    box-shadow:
+        inset 0 0 40px #00eaff20;
+}
+
+.hWindow{
+    position:absolute;
+
+    width:82px;
+    height:75px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #04172d,
+            #00dfff99,
+            #04172d
+        );
+
+    border:4px solid white;
+
+    box-shadow:
+        0 0 14px var(--cyan),
+        inset 0 0 20px #00eaff55;
+}
+
+.hw1{
+    left:135px;
+    top:132px;
+}
+
+.hw2{
+    left:255px;
+    top:132px;
+}
+
+.hw3{
+    left:375px;
+    top:132px;
+}
+
+.hw4{
+    left:85px;
+    top:275px;
+}
+
+.hw5{
+    left:190px;
+    top:275px;
+}
+
+.hw6{
+    right:42px;
+    top:275px;
+}
+
+.houseDoor{
+    position:absolute;
+
+    left:285px;
+    bottom:55px;
+
+    width:82px;
+    height:125px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #07101e,
+            #16384f,
+            #06101d
+        );
+
+    border:4px solid white;
+
+    box-shadow:
+        0 0 20px #00eaff88;
+}
+
+.houseHandle{
+    position:absolute;
+
+    right:9px;
+    top:52%;
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:#ffd000;
+
+    box-shadow:
+        0 0 14px #ffd000;
+}
+
+.balcony{
+    position:absolute;
+
+    left:235px;
+    top:225px;
+
+    width:155px;
+    height:20px;
+
+    background:#ffffff33;
+
+    border:
+        4px solid white;
+
+    box-shadow:
+        0 0 15px #00eaff55;
+}
+
+.balcony:before,
+.balcony:after{
+    content:"";
+
+    position:absolute;
+
+    top:16px;
+
+    width:4px;
+    height:52px;
+
+    background:white;
+
+    box-shadow:
+        0 0 10px var(--cyan);
+}
+
+.balcony:before{
+    left:15px;
+}
+
+.balcony:after{
+    right:15px;
+}
+
+.houseGround{
+    position:absolute;
+
+    left:5px;
+    bottom:18px;
+
+    width:610px;
+    height:65px;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00eaff22,
+            #713cff44,
+            #ff20d633,
+            #ff9d0022,
+            #00eaff22
+        );
+
+    filter:blur(2px);
+
+    box-shadow:
+        0 0 40px #00eaff55;
+}
+
+/* =========================================================
+   FEATURE SECTION
+========================================================= */
+
+.section{
+    padding:
+        100px 5%;
+}
+
+.sectionHead{
+    text-align:center;
+
+    margin-bottom:50px;
+}
+
+.sectionHead small{
+    color:var(--cyan);
+
+    letter-spacing:5px;
+
+    font-size:11px;
+}
+
+.sectionHead h2{
+    margin-top:11px;
+
+    font-size:
+        clamp(38px,5vw,60px);
+
+    letter-spacing:-3px;
+}
+
+.featureGrid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+}
+
+.feature{
+    min-height:220px;
+
+    padding:30px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:27px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff0c,
+            #ffffff03
+        );
+
+    border:
+        1px solid #ffffff1c;
+
+    backdrop-filter:blur(17px);
+
+    transition:.4s;
+}
+
+.feature:hover{
+    transform:translateY(-10px);
+
+    border-color:
+        #00eaff88;
+
+    box-shadow:
+        0 0 35px #00eaff20;
+}
+
+.featureIcon{
+    width:60px;
+    height:60px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:20px;
+
+    border-radius:18px;
+
+    font-size:29px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00eaff22,
+            #713cff25,
+            #ff20d625
+        );
+
+    border:
+        1px solid #00eaff55;
+
+    box-shadow:
+        0 0 20px #00eaff18;
+}
+
+.feature h3{
+    font-size:20px;
+}
+
+.feature p{
+    margin-top:11px;
+
+    color:#91a4c4;
+
+    line-height:1.75;
+
+    font-size:13px;
+}
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.galleryGrid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.galleryCard{
+    height:340px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:29px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #07172d,
+            #090215
+        );
+
+    border:
+        1px solid #ffffff20;
+
+    transition:.4s;
+}
+
+.galleryCard:hover{
+    transform:
+        translateY(-8px)
+        scale(1.015);
+
+    border-color:
+        #ff20d688;
+
+    box-shadow:
+        0 0 35px #ff20d633;
+}
+
+.gallerySky{
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 75% 20%,
+            #00eaff44,
+            transparent 25%
+        ),
+        linear-gradient(
+            180deg,
+            #081b35,
+            #02040a 70%
+        );
+}
+
+.galleryGround{
+    position:absolute;
+
+    bottom:0;
+    left:0;
+    right:0;
+
+    height:32%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #061d18,
+            #16432a,
+            #061d18
+        );
+}
+
+.galleryHouse{
+    position:absolute;
+
+    left:50%;
+    bottom:63px;
+
+    width:310px;
+    height:185px;
+
+    transform:
+        translateX(-50%);
+
+    filter:
+        drop-shadow(0 0 12px #fff)
+        drop-shadow(0 0 28px #00eaff44);
+}
+
+.galleryRoof{
+    position:absolute;
+
+    left:15px;
+    top:0;
+
+    width:280px;
+    height:80px;
+
+    background:
+        linear-gradient(
+            135deg,
+            white,
+            #e5f4ff,
+            white
+        );
+
+    clip-path:
+        polygon(
+            0 100%,
+            50% 0,
+            100% 100%
+        );
+}
+
+.galleryBody{
+    position:absolute;
+
+    left:30px;
+    bottom:0;
+
+    width:250px;
+    height:130px;
+
+    background:
+        linear-gradient(
+            100deg,
+            white,
+            #e9f7ff,
+            white
+        );
+
+    border:3px solid white;
+}
+
+.galleryWindow{
+    position:absolute;
+
+    width:43px;
+    height:47px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #03172c,
+            #00dfffaa,
+            #03172c
+        );
+
+    border:3px solid white;
+
+    box-shadow:
+        0 0 9px var(--cyan);
+}
+
+.gw1{
+    left:25px;
+    top:30px;
+}
+
+.gw2{
+    left:102px;
+    top:30px;
+}
+
+.gw3{
+    right:22px;
+    top:30px;
+}
+
+.galleryDoor{
+    position:absolute;
+
+    left:101px;
+    bottom:0;
+
+    width:48px;
+    height:73px;
+
+    background:#081526;
+
+    border:3px solid white;
+}
+
+.galleryLabel{
+    position:absolute;
+
+    left:18px;
+    bottom:18px;
+
+    z-index:10;
+
+    padding:
+        10px 14px;
+
+    border-radius:14px;
+
+    background:#02030add;
+
+    border:
+        1px solid #00eaff77;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+}
+
+/* =========================================================
+   3D HOUSE SECTION
+========================================================= */
+
+.viewerSection{
+    padding:
+        100px 4%
+        130px;
+}
+
+.viewer{
+    min-height:720px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:45px;
+
+    border:
+        1px solid #ffffff35;
+
+    background:
+        radial-gradient(
+            circle at 15% 50%,
+            #00eaff44,
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 85% 35%,
+            #ff20d644,
+            transparent 27%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            #ff9d0044,
+            transparent 30%
+        ),
+        #02030b;
+
+    box-shadow:
+        inset 0 0 100px #00eaff12,
+        0 0 60px #713cff20;
+}
+
+.viewerTitle{
+    position:absolute;
+
+    top:35px;
+    left:0;
+    right:0;
+
+    text-align:center;
+
+    z-index:50;
+}
+
+.viewerTitle small{
+    color:var(--cyan);
+
+    letter-spacing:5px;
+
+    font-size:11px;
+}
+
+.viewerTitle h2{
+    margin-top:8px;
+
+    font-size:
+        clamp(35px,5vw,60px);
+
+    letter-spacing:-3px;
+}
+
+.viewerTitle p{
+    margin:10px auto;
+
+    max-width:500px;
+
+    color:#a7b8d4;
+
+    font-size:13px;
+}
+
+.viewerHint{
+    position:absolute;
+
+    left:50%;
+    bottom:28px;
+
+    transform:translateX(-50%);
+
+    z-index:100;
+
+    padding:
+        11px 18px;
+
+    border-radius:14px;
+
+    background:#00000077;
+
+    border:
+        1px solid #00eaff55;
+
+    color:#aeefff;
+
+    font-size:11px;
+
+    white-space:nowrap;
+}
+
+/* =========================================================
+   3D WORLD
+========================================================= */
+
+.world{
+    position:absolute;
+
+    left:50%;
+    top:53%;
+
+    width:520px;
+    height:390px;
+
+    transform:
+        translate(-50%,-50%)
+        rotateX(-7deg)
+        rotateY(0deg)
+        rotateZ(0deg);
+
+    transform-style:preserve-3d;
+
+    cursor:grab;
+
+    touch-action:none;
+
+    user-select:none;
+
+    transition:
+        transform .08s linear;
+}
+
+.world.dragging{
+    cursor:grabbing;
+}
+
+/* HOUSE 3D FLOOR */
+
+.floor3d{
+    position:absolute;
+
+    left:50%;
+    top:68%;
+
+    width:540px;
+    height:330px;
+
+    transform:
+        translate(-50%,-50%)
+        rotateX(90deg)
+        translateZ(-30px);
+
+    transform-style:preserve-3d;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #dff4ff
+        );
+
+    border:
+        3px solid white;
+
+    box-shadow:
+        0 0 20px #ffffff88,
+        0 0 50px #00eaff44;
+}
+
+/* 3D HOUSE CORE */
+
+.house3d{
+    position:absolute;
+
+    left:50%;
+    top:55%;
+
+    width:330px;
+    height:230px;
+
+    transform:
+        translate(-50%,-50%);
+
+    transform-style:preserve-3d;
+}
+
+/* FRONT */
+
+.face{
+    position:absolute;
+
+    backface-visibility:hidden;
+
+    border:
+        3px solid white;
+
+    background:
+        linear-gradient(
+            110deg,
+            #ffffff,
+            #eaf7ff,
+            #ffffff
+        );
+
+    box-shadow:
+        inset 0 0 30px #00eaff20;
+}
+
+.front{
+    width:330px;
+    height:230px;
+
+    transform:
+        translateZ(120px);
+}
+
+/* BACK */
+
+.back{
+    width:330px;
+    height:230px;
+
+    transform:
+        rotateY(180deg)
+        translateZ(120px);
+}
+
+/* LEFT */
+
+.left{
+    width:240px;
+    height:230px;
+
+    left:45px;
+
+    transform:
+        rotateY(-90deg)
+        translateZ(165px);
+}
+
+/* RIGHT */
+
+.right{
+    width:240px;
+    height:230px;
+
+    left:45px;
+
+    transform:
+        rotateY(90deg)
+        translateZ(165px);
+}
+
+/* TOP */
+
+.top{
+    width:330px;
+    height:240px;
+
+    top:-5px;
+
+    transform:
+        rotateX(90deg)
+        translateZ(120px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #dcefff
+        );
+}
+
+/* BOTTOM */
+
+.bottom{
+    width:330px;
+    height:240px;
+
+    top:-5px;
+
+    transform:
+        rotateX(-90deg)
+        translateZ(110px);
+}
+
+/* 3D WINDOWS */
+
+.w3d{
+    position:absolute;
+
+    width:55px;
+    height:58px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #04172d,
+            #00dfffaa,
+            #04172d
+        );
+
+    border:
+        3px solid white;
+
+    box-shadow:
+        0 0 13px var(--cyan);
+}
+
+.front .w1{
+    left:35px;
+    top:55px;
+}
+
+.front .w2{
+    left:137px;
+    top:55px;
+}
+
+.front .w3{
+    right:35px;
+    top:55px;
+}
+
+.front .door3d{
+    position:absolute;
+
+    width:60px;
+    height:95px;
+
+    left:135px;
+    bottom:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #07101e,
+            #173b52,
+            #06101d
+        );
+
+    border:
+        3px solid white;
+}
+
+/* BACK WINDOWS */
+
+.back .w1{
+    left:35px;
+    top:50px;
+}
+
+.back .w2{
+    right:35px;
+    top:50px;
+}
+
+.back .backDoor{
+    position:absolute;
+
+    left:125px;
+    bottom:0;
+
+    width:80px;
+    height:80px;
+
+    border:
+        3px solid white;
+
+    background:
+        #06101d;
+}
+
+/* SIDE WINDOWS */
+
+.left .w1{
+    left:70px;
+    top:50px;
+}
+
+.left .w2{
+    left:70px;
+    top:130px;
+}
+
+.right .w1{
+    left:70px;
+    top:50px;
+}
+
+.right .w2{
+    left:70px;
+    top:130px;
+}
+
+/* 3D ROOF */
+
+.roof3d{
+    position:absolute;
+
+    left:50%;
+
+    top:-75px;
+
+    width:390px;
+    height:145px;
+
+    transform:
+        translateX(-50%)
+        translateZ(0);
+
+    clip-path:
+        polygon(
+            0 100%,
+            50% 0,
+            100% 100%
+        );
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #e2f2ff,
+            #ffffff
+        );
+
+    border-bottom:
+        7px solid #d4ecff;
+
+    filter:
+        drop-shadow(0 0 12px white);
+}
+
+/* ROOF GLOW */
+
+.roof3d:after{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:0;
+
+    width:4px;
+    height:125px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        var(--cyan);
+
+    box-shadow:
+        0 0 12px var(--cyan),
+        0 0 35px var(--cyan);
+}
+
+/* =========================================================
+   3D CONTROLS
+========================================================= */
+
+.viewerControls{
+    position:absolute;
+
+    right:25px;
+    bottom:25px;
+
+    z-index:200;
+
+    display:flex;
+
+    gap:9px;
+}
+
+.viewerButton{
+    min-width:53px;
+    height:53px;
+
+    border-radius:17px;
+
+    color:white;
+
+    background:#02050dcc;
+
+    border:
+        1px solid #00eaff66;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    transition:.3s;
+}
+
+.viewerButton:hover{
+    transform:
+        translateY(-4px);
+
+    border-color:
+        var(--pink);
+
+    box-shadow:
+        0 0 20px var(--cyan),
+        0 0 35px var(--pink);
+}
+
+/* =========================================================
+   COLOR STREAMS
+========================================================= */
+
+.stream{
+    position:absolute;
+
+    width:80%;
+
+    height:8px;
+
+    border-radius:50%;
+
+    filter:blur(3px);
+
+    opacity:.8;
+
+    pointer-events:none;
+}
+
+.stream1{
+    top:28%;
+    left:-15%;
+
+    background:var(--cyan);
+
+    transform:rotate(-12deg);
+
+    box-shadow:
+        0 0 15px var(--cyan),
+        0 0 45px var(--cyan);
+}
+
+.stream2{
+    top:56%;
+    right:-15%;
+
+    background:var(--pink);
+
+    transform:rotate(12deg);
+
+    box-shadow:
+        0 0 15px var(--pink),
+        0 0 45px var(--pink);
+}
+
+.stream3{
+    bottom:20%;
+    left:10%;
+
+    background:var(--gold);
+
+    transform:rotate(5deg);
+
+    box-shadow:
+        0 0 15px var(--gold),
+        0 0 45px var(--gold);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    padding:38px;
+
+    text-align:center;
+
+    border-top:
+        1px solid #ffffff18;
+
+    color:#71819d;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+}
+
+/* =========================================================
+   SETTINGS MODAL
+========================================================= */
+
+.modalOverlay{
+    position:fixed;
+
+    inset:0;
+
+    z-index:7000;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:#000000aa;
+
+    backdrop-filter:blur(12px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.3s;
+}
+
+.modalOverlay.open{
+    opacity:1;
+
+    pointer-events:auto;
+}
+
+.modal{
+    width:430px;
+    max-width:100%;
+
+    padding:28px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #071021f5,
+            #12001cf5
+        );
+
+    border:
+        1px solid #00eaff66;
+
+    box-shadow:
+        0 0 40px #00eaff25,
+        0 0 80px #ff20d620;
+}
+
+.modal h2{
+    font-size:27px;
+
+    margin-bottom:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--pink),
+            var(--gold)
+        );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+}
+
+.modalRow{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:14px 0;
+
+    border-bottom:
+        1px solid #ffffff12;
+}
+
+.modalRow span{
+    color:#b8c7de;
+
+    font-size:13px;
+}
+
+.modalClose{
+    width:100%;
+
+    margin-top:20px;
+
+    padding:14px;
+
+    border-radius:15px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink)
+        );
+
+    border:0;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+/* =========================================================
+   LARGE TEXT
+========================================================= */
+
+body.largeText .heroText p,
+body.largeText .feature p,
+body.largeText .galleryLabel,
+body.largeText .viewer p{
+    font-size:17px;
+}
+
+body.noAnimations *,
+body.noAnimations *:before,
+body.noAnimations *:after{
+    animation:none !important;
+
+    transition:none !important;
+}
+
+/* =========================================================
+   LIGHT MODE
+========================================================= */
+
+body.lightMode{
+    --bg:#eef8ff;
+
+    color:#06101d;
+}
+
+body.lightMode .topbar{
+    background:#effaffdd;
+
+    color:#06101d;
+}
+
+body.lightMode .navLinks a{
+    color:#13233b;
+}
+
+body.lightMode .bigIcon{
+    color:#06101d;
+
+    background:#ffffffaa;
+}
+
+body.lightMode .feature,
+body.lightMode .galleryCard{
+    background:#ffffff55;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:1100px){
+
+    .navLinks{
+        display:none;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+
+        text-align:center;
+    }
+
+    .heroText p{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .heroButtons{
+        justify-content:center;
+    }
+
+    .houseStage{
+        margin-top:40px;
+
+        transform:
+            scale(.82);
+    }
+
+    .featureGrid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px){
+
+    .topbar{
+        height:76px;
+
+        padding:0 11px;
+    }
+
+    main{
+        padding-top:76px;
+    }
+
+    .logoText{
+        display:none;
+    }
+
+    .logoIcon{
+        width:49px;
+        height:49px;
+    }
+
+    .navIcons{
+        gap:5px;
+    }
+
+    .bigIcon{
+        width:45px;
+        height:45px;
+
+        font-size:20px;
+    }
+
+    .navIcons .bigIcon:nth-child(1),
+    .navIcons .bigIcon:nth-child(2){
+        display:none;
+    }
+
+    .hero{
+        min-height:780px;
+
+        padding:
+            55px 18px 20px;
+    }
+
+    .heroTitle{
+        font-size:51px;
+
+        letter-spacing:-3px;
+    }
+
+    .houseStage{
+        transform:
+            scale(.57);
+
+        margin-left:-120px;
+        margin-right:-120px;
+    }
+
+    .featureGrid{
+        grid-template-columns:1fr;
+    }
+
+    .galleryGrid{
+        grid-template-columns:1fr;
+    }
+
+    .viewer{
+        min-height:650px;
+
+        border-radius:27px;
+    }
+
+    .world{
+        transform:
+            translate(-50%,-50%)
+            scale(.68);
+    }
+
+    .viewerHint{
+        bottom:85px;
+
+        font-size:9px;
+    }
+
+    .viewerControls{
+        right:50%;
+
+        transform:
+            translateX(50%);
+    }
+
+    .menu{
+        width:100%;
+
+        max-width:100%;
+
+        border-radius:
+            28px 0 0 28px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     OVERLAY
+===================================================== -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeMenu()">
+</div>
+
+
+<!-- =====================================================
+     MENU
+===================================================== -->
+
+<aside
+    class="menu"
+    id="menu">
+
+    <div class="menuHeader">
+
+        <h2>
+            HOUSE MENU
+        </h2>
+
+        <button
+            class="closeButton"
+            onclick="closeMenu()">
+            ×
+        </button>
+
+    </div>
+
+    <div class="menuLine"></div>
+
+
+    <button
+        class="menuItem"
+        onclick="goTo('home')">
+
+        <div class="menuIcon">
+            ⌂
+        </div>
+
+        <div class="menuText">
+
+            <strong>
+                HOME
+            </strong>
+
+            <span>
+                Return to dream house
+            </span>
+
+        </div>
+
+    </button>
+
+
+    <button
+        class="menuItem"
+        onclick="goTo('features')">
+
+        <div class="menuIcon">
+            ✦
+        </div>
+
+        <div class="menuText">
+
+            <strong>
+                FEATURES
+            </strong>
+
+            <span>
+                Discover house technology
+            </span>
+
+        </div>
+
+    </button>
+
+
+    <button
+        class="menuItem"
+        onclick="goTo('gallery')">
+
+        <div class="menuIcon">
+            ▧
+        </div>
+
+        <div class="menuText">
+
+            <strong>
+                GALLERY
+            </strong>
+
+            <span>
+                Explore house views
+            </span>
+
+        </div>
+
+    </button>
+
+
+    <button
+        class="menuItem"
+        onclick="goTo('viewer')">
+
+        <div class="menuIcon">
+            ◈
+        </div>
+
+        <div class="menuText">
+
+            <strong>
+                3D HOUSE
+            </strong>
+
+            <span>
+                Touch and rotate the house
+            </span>
+
+        </div>
+
+    </button>
+
+
+    <button
+        class="menuItem"
+        onclick="openSettings()">
+
+        <div class="menuIcon">
+            ⚙
+        </div>
+
+        <div class="menuText">
+
+            <strong>
+                SETTINGS
+            </strong>
+
+            <span>
+                Customize your experience
+            </span>
+
+        </div>
+
+    </button>
+
+
+    <div class="settings">
+
+        <div class="settingsTitle">
+            QUICK SETTINGS
+        </div>
+
+
+        <div class="settingGrid">
+
+            <button
+                class="setting"
+                onclick="setTextSmall()">
+                A− SMALL TEXT
+            </button>
+
+
+            <button
+                class="setting"
+                onclick="setTextLarge()">
+                A+ LARGE TEXT
+            </button>
+
+
+            <button
+                class="setting"
+                onclick="toggleAnimations()">
+                ✦ ANIMATION
+            </button>
+
+
+            <button
+                class="setting"
+                onclick="toggleLight()">
+                ◐ LIGHT MODE
+            </button>
+
+
+            <button
+                class="setting"
+                onclick="setAccent('cyan')">
+                🔵 CYAN
+            </button>
+
+
+            <button
+                class="setting"
+                onclick="setAccent('pink')">
+                🩷 PINK
+            </button>
+
+
+            <button
+                class="setting"
+                onclick="setAccent('gold')">
+                🟡 GOLD
+            </button>
+
+
+            <button
+                class="setting"
+                onclick="setAccent('green')">
+                🟢 GREEN
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="menuItem exitItem"
+        onclick="exitMenu()">
+
+        <div class="menuIcon">
+            ↩
+        </div>
+
+        <div class="menuText">
+
+            <strong>
+                EXIT
+            </strong>
+
+            <span>
+                Close the menu
+            </span>
+
+        </div>
+
+    </button>
+
+</aside>
+
+
+<!-- =====================================================
+     SETTINGS MODAL
+===================================================== -->
+
+<div
+    class="modalOverlay"
+    id="settingsModal">
+
+    <div class="modal">
+
+        <h2>
+            EXPERIENCE SETTINGS
+        </h2>
+
+        <div class="modalRow">
+            <span>
+                Interface
+            </span>
+
+            <strong>
+                MAX FUTURE
+            </strong>
+        </div>
+
+        <div class="modalRow">
+            <span>
+                3D Control
+            </span>
+
+            <strong>
+                TOUCH + MOUSE
+            </strong>
+        </div>
+
+        <div class="modalRow">
+            <span>
+                House
+            </span>
+
+            <strong>
+                WHITE FUTURE HOME
+            </strong>
+        </div>
+
+        <div class="modalRow">
+            <span>
+                Version
+            </span>
+
+            <strong>
+                M POPAL 360
+            </strong>
+        </div>
+
+        <button
+            class="modalClose"
+            onclick="closeSettings()">
+            CLOSE SETTINGS
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TOP BAR
+===================================================== -->
+
+<header class="topbar">
+
+    <div class="logo">
+
+        <div class="logoIcon">
+            ⌂
+        </div>
+
+        <div class="logoText">
+
+            <h1>
+                M POPAL
+            </h1>
+
+            <span>
+                DREAM HOUSE
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav class="navLinks">
+
+        <a href="#home">
+            HOME
+        </a>
+
+        <a href="#features">
+            FEATURES
+        </a>
+
+        <a href="#gallery">
+            GALLERY
+        </a>
+
+        <a href="#viewer">
+            3D HOUSE
+        </a>
+
+    </nav>
+
+
+    <div class="navIcons">
+
+        <button
+            class="bigIcon"
+            onclick="goTo('gallery')">
+            ⌕
+        </button>
+
+        <button
+            class="bigIcon"
+            onclick="goTo('viewer')">
+            ◈
+        </button>
+
+        <button
+            class="bigIcon"
+            onclick="openSettings()">
+            ⚙
+        </button>
+
+        <button
+            class="bigIcon"
+            onclick="openMenu()">
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section
+    class="hero"
+    id="home">
+
+
+    <div class="heroText">
+
+        <div class="eyebrow">
+            M POPAL • FUTURE LIVING
+        </div>
+
+
+        <h1 class="heroTitle">
+
+            YOUR
+
+            <span class="colorText">
+                DREAM
+            </span>
+
+            HOME
+
+            <br>
+
+            STARTS HERE.
+
+        </h1>
+
+
+        <p>
+            A futuristic two-story white home
+            designed with modern architecture,
+            large glass windows, open spaces,
+            beautiful lighting and an interactive
+            exterior experience.
+        </p>
+
+
+        <div class="heroButtons">
+
+            <button
+                class="primaryButton"
+                onclick="goTo('viewer')">
+
+                EXPLORE 3D HOUSE
+                →
+
+            </button>
+
+
+            <button
+                class="secondaryButton"
+                onclick="goTo('gallery')">
+
+                VIEW GALLERY
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- LARGE HOUSE -->
+
+    <div class="houseStage">
+
+        <div class="houseGlow"></div>
+
+
+        <div class="houseHero">
+
+            <div class="houseRoof">
+
+                <div
+                    class="houseRoofLine">
+                </div>
+
+            </div>
+
+
+            <div class="houseUpper">
+
+                <div class="hWindow hw1"></div>
+
+                <div class="hWindow hw2"></div>
+
+                <div class="hWindow hw3"></div>
+
+            </div>
+
+
+            <div class="houseLower">
+
+                <div class="hWindow hw4"></div>
+
+                <div class="hWindow hw5"></div>
+
+                <div class="hWindow hw6"></div>
+
+
+                <div class="houseDoor">
+
+                    <div
+                        class="houseHandle">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="balcony"></div>
+
+
+            <div class="houseGround"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section
+    class="section"
+    id="features">
+
+    <div class="sectionHead">
+
+        <small>
+            HOUSE EXPERIENCE
+        </small>
+
+        <h2>
+            MORE THAN A HOUSE
+        </h2>
+
+    </div>
+
+
+    <div class="featureGrid">
+
+
+        <div class="feature">
+
+            <div class="featureIcon">
+                ⌂
+            </div>
+
+            <h3>
+                Modern Architecture
+            </h3>
+
+            <p>
+                Bright white architecture,
+                large glass windows and a
+                futuristic two-floor structure.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="featureIcon">
+                ✦
+            </div>
+
+            <h3>
+                Smart Living
+            </h3>
+
+            <p>
+                A digital house experience
+                designed around technology,
+                comfort and modern life.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="featureIcon">
+                ◇
+            </div>
+
+            <h3>
+                Large Spaces
+            </h3>
+
+            <p>
+                Wide windows, open areas,
+                balcony space and a large
+                modern exterior.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="featureIcon">
+                ∞
+            </div>
+
+            <h3>
+                360° Exterior
+            </h3>
+
+            <p>
+                Rotate the house with your
+                finger or mouse and explore
+                the exterior from different
+                directions.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<section
+    class="section"
+    id="gallery">
+
+    <div class="sectionHead">
+
+        <small>
+            HOUSE COLLECTION
+        </small>
+
+        <h2>
+            HOUSE GALLERY
+        </h2>
+
+    </div>
+
+
+    <div class="galleryGrid">
+
+
+        <!-- FRONT -->
+
+        <div class="galleryCard">
+
+            <div class="gallerySky"></div>
+
+            <div class="galleryGround"></div>
+
+            <div class="galleryHouse">
+
+                <div class="galleryRoof"></div>
+
+                <div class="galleryBody">
+
+                    <div
+                        class="galleryWindow gw1">
+                    </div>
+
+                    <div
+                        class="galleryWindow gw2">
+                    </div>
+
+                    <div
+                        class="galleryWindow gw3">
+                    </div>
+
+                    <div class="galleryDoor"></div>
+
+                </div>
+
+            </div>
+
+            <div class="galleryLabel">
+                FRONT • WHITE HOUSE
+            </div>
+
+        </div>
+
+
+        <!-- BACK -->
+
+        <div class="galleryCard">
+
+            <div
+                class="gallerySky"
+                style="
+                    filter:hue-rotate(35deg);
+                ">
+            </div>
+
+            <div class="galleryGround"></div>
+
+            <div
+                class="galleryHouse"
+                style="
+                    transform:
+                    translateX(-50%)
+                    rotateY(180deg);
+                ">
+
+                <div class="galleryRoof"></div>
+
+                <div class="galleryBody">
+
+                    <div
+                        class="galleryWindow gw1">
+                    </div>
+
+                    <div
+                        class="galleryWindow gw3">
+                    </div>
+
+                    <div class="galleryDoor"></div>
+
+                </div>
+
+            </div>
+
+            <div class="galleryLabel">
+                BACK • GARDEN SIDE
+            </div>
+
+        </div>
+
+
+        <!-- SIDE -->
+
+        <div class="galleryCard">
+
+            <div
+                class="gallerySky"
+                style="
+                    filter:hue-rotate(70deg);
+                ">
+            </div>
+
+            <div class="galleryGround"></div>
+
+            <div
+                class="galleryHouse"
+                style="
+                    transform:
+                    translateX(-50%)
+                    scaleX(.78);
+                ">
+
+                <div class="galleryRoof"></div>
+
+                <div class="galleryBody">
+
+                    <div
+                        class="galleryWindow gw1">
+                    </div>
+
+                    <div
+                        class="galleryWindow gw3">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="galleryLabel">
+                SIDE • LARGE WINDOWS
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     3D VIEWER
+===================================================== -->
+
+<section
+    class="viewerSection"
+    id="viewer">
+
+
+    <div class="viewer">
+
+
+        <div class="stream stream1"></div>
+
+        <div class="stream stream2"></div>
+
+        <div class="stream stream3"></div>
+
+
+        <div class="viewerTitle">
+
+            <small>
+                INTERACTIVE ARCHITECTURE
+            </small>
+
+            <h2>
+                360° 3D HOUSE
+            </h2>
+
+            <p>
+                Touch and drag the house to explore
+                the front, back, left, right and
+                rooftop.
+            </p>
+
+        </div>
+
+
+        <!-- 3D WORLD -->
+
+        <div
+            class="world"
+            id="world">
+
+
+            <div class="floor3d"></div>
+
+
+            <div class="house3d">
+
+
+                <!-- FRONT -->
+
+                <div
+                    class="face front">
+
+                    <div
+                        class="w3d w1">
+                    </div>
+
+                    <div
+                        class="w3d w2">
+                    </div>
+
+                    <div
+                        class="w3d w3">
+                    </div>
+
+                    <div
+                        class="door3d">
+                    </div>
+
+                </div>
+
+
+                <!-- BACK -->
+
+                <div
+                    class="face back">
+
+                    <div
+                        class="w3d w1">
+                    </div>
+
+                    <div
+                        class="w3d w2">
+                    </div>
+
+                    <div
+                        class="backDoor">
+                    </div>
+
+                </div>
+
+
+                <!-- LEFT -->
+
+                <div
+                    class="face left">
+
+                    <div
+                        class="w3d w1">
+                    </div>
+
+                    <div
+                        class="w3d w2">
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT -->
+
+                <div
+                    class="face right">
+
+                    <div
+                        class="w3d w1">
+                    </div>
+
+                    <div
+                        class="w3d w2">
+                    </div>
+
+                </div>
+
+
+                <!-- TOP -->
+
+                <div
+                    class="face top">
+
+                    <div
+                        class="roof3d">
+                    </div>
+
+                </div>
+
+
+                <!-- BOTTOM -->
+
+                <div
+                    class="face bottom">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="viewerHint">
+            👆 TOUCH / DRAG • 🖱️ MOUSE DRAG • ↔ ROTATE
+        </div>
+
+
+        <div class="viewerControls">
+
+            <button
+                class="viewerButton"
+                onclick="rotateLeft()">
+                ←
+            </button>
+
+            <button
+                class="viewerButton"
+                onclick="reset3D()">
+                ⟳
+            </button>
+
+            <button
+                class="viewerButton"
+                onclick="rotateRight()">
+                →
+            </button>
+
+            <button
+                class="viewerButton"
+                onclick="zoomIn()">
+                ＋
+            </button>
+
+            <button
+                class="viewerButton"
+                onclick="zoomOut()">
+                −
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    M POPAL • DREAM HOUSE
+
+    <br><br>
+
+    FUTURE LIVING
+    •
+    MODERN ARCHITECTURE
+    •
+    360° EXPERIENCE
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   MENU
+========================================================= */
+
+const menu =
+    document.getElementById("menu");
+
+const overlay =
+    document.getElementById("overlay");
+
+
+function openMenu(){
+
+    menu.classList.add("open");
+
+    overlay.classList.add("open");
+
+}
+
+
+function closeMenu(){
+
+    menu.classList.remove("open");
+
+    overlay.classList.remove("open");
+
+}
+
+
+function exitMenu(){
+
+    closeMenu();
+
+}
+
+
+/* =========================================================
+   SCROLL
+========================================================= */
+
+function goTo(id){
+
+    closeMenu();
+
+    const target =
+        document.getElementById(id);
+
+    if(target){
+
+        target.scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+}
+
+
+/* =========================================================
+   SETTINGS MODAL
+========================================================= */
+
+const settingsModal =
+    document.getElementById(
+        "settingsModal"
+    );
+
+
+function openSettings(){
+
+    settingsModal.classList.add("open");
+
+}
+
+
+function closeSettings(){
+
+    settingsModal.classList.remove("open");
+
+}
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+function setTextLarge(){
+
+    document.body.classList.add(
+        "largeText"
+    );
+
+}
+
+
+function setTextSmall(){
+
+    document.body.classList.remove(
+        "largeText"
+    );
+
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+function toggleAnimations(){
+
+    document.body.classList.toggle(
+        "noAnimations"
+    );
+
+}
+
+
+/* =========================================================
+   LIGHT
+========================================================= */
+
+function toggleLight(){
+
+    document.body.classList.toggle(
+        "lightMode"
+    );
+
+}
+
+
+/* =========================================================
+   COLORS
+========================================================= */
+
+function setAccent(color){
+
+    const root =
+        document.documentElement;
+
+    if(color === "cyan"){
+
+        root.style.setProperty(
+            "--cyan",
+            "#00eaff"
+        );
+
+        root.style.setProperty(
+            "--purple",
+            "#713cff"
+        );
+
+        root.style.setProperty(
+            "--pink",
+            "#ff20d8"
+        );
+
+        root.style.setProperty(
+            "--gold",
+            "#ff9d00"
+        );
+
+    }
+
+
+    if(color === "pink"){
+
+        root.style.setProperty(
+            "--cyan",
+            "#ff20d8"
+        );
+
+        root.style.setProperty(
+            "--purple",
+            "#a43cff"
+        );
+
+        root.style.setProperty(
+            "--pink",
+            "#ff4fae"
+        );
+
+        root.style.setProperty(
+            "--gold",
+            "#ff7b00"
+        );
+
+    }
+
+
+    if(color === "gold"){
+
+        root.style.setProperty(
+            "--cyan",
+            "#ffb000"
+        );
+
+        root.style.setProperty(
+            "--purple",
+            "#ff5c00"
+        );
+
+        root.style.setProperty(
+            "--pink",
+            "#ff2077"
+        );
+
+        root.style.setProperty(
+            "--gold",
+            "#ffe100"
+        );
+
+    }
+
+
+    if(color === "green"){
+
+        root.style.setProperty(
+            "--cyan",
+            "#00ff9d"
+        );
+
+        root.style.setProperty(
+            "--purple",
+            "#00b7ff"
+        );
+
+        root.style.setProperty(
+            "--pink",
+            "#00ffcc"
+        );
+
+        root.style.setProperty(
+            "--gold",
+            "#8dff00"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   3D HOUSE ENGINE
+========================================================= */
+
+const world =
+    document.getElementById("world");
+
+let rotationY = 0;
+
+let rotationX = -7;
+
+let zoom = 1;
+
+let dragging = false;
+
+let startX = 0;
+
+let startY = 0;
+
+let startRotY = 0;
+
+let startRotX = 0;
+
+
+/* UPDATE */
+
+function update3D(){
+
+    world.style.transform =
+        `
+        translate(-50%,-50%)
+        rotateX(${rotationX}deg)
+        rotateY(${rotationY}deg)
+        scale(${zoom})
+        `;
+
+}
+
+
+/* MOUSE DOWN */
+
+world.addEventListener(
+    "mousedown",
+    function(e){
+
+        dragging = true;
+
+        world.classList.add(
+            "dragging"
+        );
+
+        startX = e.clientX;
+
+        startY = e.clientY;
+
+        startRotY = rotationY;
+
+        startRotX = rotationX;
+
+    }
+);
+
+
+/* MOUSE MOVE */
+
+window.addEventListener(
+    "mousemove",
+    function(e){
+
+        if(!dragging) return;
+
+        const dx =
+            e.clientX - startX;
+
+        const dy =
+            e.clientY - startY;
+
+        rotationY =
+            startRotY + dx * .55;
+
+        rotationX =
+            startRotX - dy * .30;
+
+        rotationX =
+            Math.max(
+                -55,
+                Math.min(
+                    45,
+                    rotationX
+                )
+            );
+
+        update3D();
+
+    }
+);
+
+
+/* MOUSE UP */
+
+window.addEventListener(
+    "mouseup",
+    function(){
+
+        dragging = false;
+
+        world.classList.remove(
+            "dragging"
+        );
+
+    }
+);
+
+
+/* TOUCH START */
+
+world.addEventListener(
+    "touchstart",
+    function(e){
+
+        const touch =
+            e.touches[0];
+
+        dragging = true;
+
+        startX =
+            touch.clientX;
+
+        startY =
+            touch.clientY;
+
+        startRotY =
+            rotationY;
+
+        startRotX =
+            rotationX;
+
+    },
+    {passive:true}
+);
+
+
+/* TOUCH MOVE */
+
+world.addEventListener(
+    "touchmove",
+    function(e){
+
+        if(!dragging) return;
+
+        const touch =
+            e.touches[0];
+
+        const dx =
+            touch.clientX - startX;
+
+        const dy =
+            touch.clientY - startY;
+
+        rotationY =
+            startRotY + dx * .55;
+
+        rotationX =
+            startRotX - dy * .30;
+
+        rotationX =
+            Math.max(
+                -55,
+                Math.min(
+                    45,
+                    rotationX
+                )
+            );
+
+        update3D();
+
+    },
+    {passive:true}
+);
+
+
+/* TOUCH END */
+
+world.addEventListener(
+    "touchend",
+    function(){
+
+        dragging = false;
+
+    }
+);
+
+
+/* =========================================================
+   3D BUTTONS
+========================================================= */
+
+function rotateLeft(){
+
+    rotationY -= 45;
+
+    update3D();
+
+}
+
+
+function rotateRight(){
+
+    rotationY += 45;
+
+    update3D();
+
+}
+
+
+function reset3D(){
+
+    rotationY = 0;
+
+    rotationX = -7;
+
+    zoom = 1;
+
+    update3D();
+
+}
+
+
+function zoomIn(){
+
+    zoom += .12;
+
+    zoom =
+        Math.min(
+            1.5,
+            zoom
+        );
+
+    update3D();
+
+}
+
+
+function zoomOut(){
+
+    zoom -= .12;
+
+    zoom =
+        Math.max(
+            .65,
+            zoom
+        );
+
+    update3D();
+
+}
+
+
+/* =========================================================
+   INITIAL
+========================================================= */
+
+update3D();
+
+
+/* ESC CLOSE */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Escape"){
+
+            closeMenu();
+
+            closeSettings();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
